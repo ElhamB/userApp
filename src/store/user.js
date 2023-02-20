@@ -20,8 +20,22 @@ export const filterByValue = (value) => async (dispatch) => {
                 return user.name.toLowerCase().includes(value);
               });
                 return { ...state,users: filtereddUsers};
-                case ADD_USERS:                
-                  return{...state,selectedUsers:[...state.selectedUsers,action.selectedUser]}
+                case ADD_USERS: 
+                const newItem = action.selectedUser
+                const existingUser = state.selectedUsers.find((item) => item.id === newItem.id)
+                if (existingUser) {
+                  console.log("existingUser ")
+                    return {
+                        ...state,
+                        selectedUsers:state.selectedUsers.filter(({ id }) => id !== newItem.id)
+                    }
+                }
+                else {
+                    return {
+                        ...state,     
+                        selectedUsers:[...state.selectedUsers,newItem]             
+                    }
+                }               
               default:
                 return state;
         }
