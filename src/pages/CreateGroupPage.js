@@ -2,9 +2,10 @@ import React from "react";
 import SelectedMember from "../components/SelectedMembers/SelectedMembers";
 import UserFilter from "../components/UserFilter/UserFilter";
 import UserList from "../components/UserList/UserList";
-
 import "./createGroup.css";
+
 const CreateGroupPage = () => {
+
   return (
     <div className="container">
       <div className="form-control">

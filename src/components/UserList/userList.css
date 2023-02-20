@@ -59,6 +59,7 @@
   text-align: center;
   border-radius: 23px;
   border: none;
+  cursor: pointer;
 }
 
 .btn-add {
@@ -74,4 +75,4 @@
 .add-user-icon {
   width: 12px;
   margin-right: 4px;
-}/*# sourceMappingURL=userList.css.map */
+}/*# sourceMappingURL=UserList.css.map */

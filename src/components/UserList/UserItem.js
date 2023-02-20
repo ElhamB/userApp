@@ -1,7 +1,18 @@
 import React from "react";
+import { useDispatch,useSelector } from "react-redux";
 import addUser from "./add-user.svg";
-
+import { addUsers } from "../../store/user";
 const UserItem = ({ user }) => {
+  const dispatch = useDispatch();
+  const isAdded = useSelector((state) => state.user.isAdded);
+const userInfo={
+    name:user.name,
+    image:user.image,
+    isSelected:true
+}
+  const hanleSelectUser = () => {
+    dispatch(addUsers(userInfo));
+  };
   return (
     <div className="user-container">
       <div>
@@ -19,13 +30,10 @@ const UserItem = ({ user }) => {
         </figure>
       </div>
       <div>
-        <button className="btn-add">
-          <img src={addUser} className="add-user-icon" alt="add-user-icon" />
-          Add
+        <button className={`${isAdded ? 'btn-added': 'btn-add'}`} onClick={hanleSelectUser}>
+        {isAdded ? <i className="fa fa-check-circle"></i> : <img src={addUser} className="add-user-icon" alt="add-user-icon" />} 
+          {isAdded ? 'Added': 'Add'}
         </button>
-        {/* <button className="btn-added">
-          <i className="fa fa-check-circle"></i> Added
-        </button> */}
       </div>
     </div>
   );
