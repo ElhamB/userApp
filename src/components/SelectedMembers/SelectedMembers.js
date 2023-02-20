@@ -1,19 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./selectedMember.css";
+import SelectedMemberItem from "./SelectedMemberItem";
 
 const SelectedMembers = () => {
+  const selectedUsers = useSelector((state) => state.user.selectedUsers);
+
   return (
     <div className="selected-container">
-      <figure className="user-selected">
-        <div>
-          <img src="/images/1.jpeg" alt="" />
-          <span>
-            <i className="fa fa-check-circle"></i>
-          </span>
-        </div>
-        <figcaption>Etrin Green</figcaption>
-      </figure>
-     
+      {
+        selectedUsers.map((user)=><SelectedMemberItem user={user} key={user.id}/>)
+      }
       <div className="selected-counter">+5</div>
     </div>
   );

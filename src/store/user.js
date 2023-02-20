@@ -8,11 +8,11 @@ export const filterByValue = (value) => async (dispatch) => {
     dispatch({ type: FILTER_BY_VALUE, payload: value });
   };
   export const addUsers = (userInfo) => (dispatch) => {
-    dispatch({ type: ADD_USERS,selectedUsers:userInfo });
+    dispatch({ type: ADD_USERS,selectedUser:userInfo });
   };
   //reducers
   export const userReducer = (
-    state = { users:users }, action) => {
+    state = { users:users ,selectedUsers:[]}, action) => {
         switch (action.type) {
             case FILTER_BY_VALUE:
               let value = action.payload.value;
@@ -20,9 +20,8 @@ export const filterByValue = (value) => async (dispatch) => {
                 return user.name.toLowerCase().includes(value);
               });
                 return { ...state,users: filtereddUsers};
-                case ADD_USERS:
-                 //let selectedUsers;
-                  return{...state,users:[action.selectedUsers]}
+                case ADD_USERS:                
+                  return{...state,selectedUsers:[...state.selectedUsers,action.selectedUser]}
               default:
                 return state;
         }
