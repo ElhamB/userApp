@@ -52,6 +52,11 @@
 .btn-primary:hover, .btn-primary:focus {
   background-color: #166fec;
 }
+.btn-primary:disabled, .btn-primary:disabled:hover {
+  background-color: #1979ff;
+  cursor: default;
+  opacity: 0.5;
+}
 
 .btn-outline-primary {
   color: #1979ff;

@@ -18,17 +18,20 @@ export const userReducer = (
   switch (action.type) {
     case FILTER_BY_VALUE:
       let filteredUsers=[];
+      const keys=["name","email"];
       let value = action.payload.value;
       if (value) {
-        filteredUsers = state.users.filter((user) => {
-          return user.name.toLowerCase().includes(value);
-        });
+        filteredUsers = state.users.filter((user) => 
+         {
+          return  keys.some((key)=>user[key].toLowerCase().includes(value)) ;
+         }
+        );
       } else filteredUsers = users;
       return { ...state, users: filteredUsers };
     case ADD_USERS:
       const newItem = action.selectedUser;
       const existingUser = state.selectedUsers.find(
-        (item) => item.id === newItem.id
+        ({ id }) => id === newItem.id
       );
       if (existingUser) {
         console.log("existingUser ");

@@ -51,6 +51,11 @@ cursor: pointer;
     &:hover,&:focus{
         background-color: #166fec;
     }
+    &:disabled,&:disabled:hover{
+        background-color: $blueColor;
+        cursor: default;
+        opacity: 0.5;
+    }
 }
 .btn-outline-primary{
     @extend .btn;
