@@ -5,7 +5,9 @@ export const users=[
         email:'alizadeh@examle.com',
         title:'COE',
         location:'Tehran',
-        mobile:'+121213131414'
+        mobile:'+121213131414',
+        image:'/images/1.jpeg',
+        status:true
     },
     {
         id:'2',
@@ -13,7 +15,9 @@ export const users=[
         email:'sohrab@example.com',
         title:'Project Manager',
         location:'Muscat',
-        mobile:'+121213131415'
+        mobile:'+121213131415',
+        image:'/images/2.jpg',
+        status:true
     },
     {
         id:'3',
@@ -21,7 +25,9 @@ export const users=[
         email:'sohrabi@example.com',
         title:'Front-End Developer',
         location:'Tehran',
-        mobile:'+121213131416'
+        mobile:'+121213131416',
+        image:'/images/3.jpeg',
+        status:false
     },
     {
         id:'4',
@@ -29,7 +35,9 @@ export const users=[
         email:'salehzadeh@gmail.com',
         title:'Front-End Developer',
         location:'Tehran',
-        mobile:'+121213131417'
+        mobile:'+121213131417',
+        image:'/images/4.jpg',
+        status:true
     },
     {
         id:'5',
@@ -37,7 +45,9 @@ export const users=[
         email:'ali.saleh@email.com',
         title:'Junior Back-End Developer',
         location:'Muscat',
-        mobile:'+121213131418'
+        mobile:'+121213131418',
+        image:'/images/5.jpg',
+        status:false
     },
     {
         id:'6',
@@ -45,7 +55,9 @@ export const users=[
         email:'sohrab_jamal@gmail.com',
         title:'Product Owner',
         location:'Muscat',
-        mobile:'+121213131419'
+        mobile:'+121213131419',
+        image:'/images/6.jpeg',
+        status:false
     },
     {
         id:'7',
@@ -53,7 +65,9 @@ export const users=[
         email:'niloo_aliz@example.com',
         title:'President',
         location:'Muscat',
-        mobile:'+121213131420'
+        mobile:'+121213131420',
+        image:'/images/7.jpeg',
+        status:true
     },
     {
         id:'8',
@@ -61,7 +75,9 @@ export const users=[
         email:'jamjam@example.com',
         title:'Senior Back-End Developer',
         location:'Tehran',
-        mobile:'+121213131421'
+        mobile:'+121213131421',
+        image:'/images/8.jpeg',
+        status:false
     },
     {
         id:'9',
@@ -69,7 +85,9 @@ export const users=[
         email:'ehsanaliz@example.com',
         title:'Senior Front-end developer',
         location:'Tehran',
-        mobile:'+121213131422'
+        mobile:'+121213131422',
+        image:'/images/9.jpg',
+        status:false
     }
  
   ]

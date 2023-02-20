@@ -1,3 +1,5 @@
+import { users } from "../assets/users";
+
 //action types
 const FILTER_BY_VALUE = "FILTER_BY_VALUE";
 
@@ -8,7 +10,7 @@ export const filterByValue = (value) => async (dispatch) => {
 
   //reducers
   export const userReducer = (
-    state = { users: [] }, action) => {
+    state = { users:users }, action) => {
         switch (action.type) {
             case FILTER_BY_VALUE:
                 return { users: action.payload };

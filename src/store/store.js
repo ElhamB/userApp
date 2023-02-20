@@ -5,10 +5,8 @@ import {
   import thunk from "redux-thunk";
   import { composeWithDevTools } from "@redux-devtools/extension";
   import reducer from "./reducer";
- import { users } from "../assets/users";
 
   const initialState = {
-   users
   };
   const middleware = [thunk];
   

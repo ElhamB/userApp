@@ -34,15 +34,20 @@
   height: 100%;
   border-radius: 5px;
 }
-.user-list .user-container .user-info .img-container .online-sign {
+.user-list .user-container .user-info .img-container .status {
   position: absolute;
   right: -6px;
   bottom: -2px;
   border: 2px solid #fff;
-  background-color: #4cad5b;
   width: 15px;
   height: 15px;
   border-radius: 100%;
+}
+.user-list .user-container .user-info .img-container .online {
+  background-color: #4cad5b;
+}
+.user-list .user-container .user-info .img-container .offline {
+  background-color: #dddddd;
 }
 .user-list .user-container:last-child {
   border-bottom: none;
@@ -69,4 +74,4 @@
 .add-user-icon {
   width: 12px;
   margin-right: 4px;
-}/*# sourceMappingURL=UserList.css.map */
+}/*# sourceMappingURL=userList.css.map */
