@@ -15,7 +15,7 @@
 }
 .selected-container .user-selected {
   width: 15%;
-  padding: 0 15px;
+  padding: 0 5px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -23,6 +23,12 @@
 }
 .selected-container .user-selected figcaption {
   color: #858585;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  font-size: 14px;
 }
 .selected-container .user-selected div {
   width: 50px;
@@ -60,4 +66,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 991px) {
+  .selected-container .user-selected figcaption {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 567px) {
+  .selected-container .user-selected figcaption {
+    font-size: 12px;
+  }
+  .selected-container .user-selected div {
+    width: 34px;
+    height: 34px;
+  }
+  .selected-container .user-selected div span {
+    width: 17px;
+    height: 16px;
+    right: -4px;
+  }
+  .selected-container .selected-counter {
+    width: 34px;
+    height: 34px;
+  }
 }/*# sourceMappingURL=selectedMember.css.map */

@@ -16,13 +16,19 @@ $blueColor: #1979ff;
   margin-bottom: 20px;
   .user-selected {
     width: 15%;
-    padding: 0 15px;
+    padding: 0 5px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     figcaption {
       color: #858585;
+      text-align: center;
+      overflow: hidden;
+text-overflow: ellipsis;
+width: 100%;
+white-space: nowrap;
+font-size: 14px;
     }
     div {
       width: 50px;
@@ -62,4 +68,35 @@ $blueColor: #1979ff;
     justify-content: center;
     align-items: center;
   }
+}
+@media screen and (max-width: 991px) {
+  .selected-container {
+    .user-selected {
+      figcaption {
+        font-size: 13px;
+      }
+    }
+}}
+@media screen and (max-width: 567px) {
+  .selected-container {
+    .user-selected {
+      figcaption {
+        font-size: 12px;
+      }
+      div {
+        width: 34px;
+        height: 34px;
+        span {
+          width: 17px;
+          height: 16px;
+          right: -4px;
+        }
+      }
+    }
+    .selected-counter {
+      width: 34px;
+      height: 34px;
+    }
+  }
+  
 }

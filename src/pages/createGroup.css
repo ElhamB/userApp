@@ -66,4 +66,10 @@
 .btn-outline-primary:hover, .btn-outline-primary:focus {
   background-color: #1979ff;
   color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    width: 100%;
+  }
 }/*# sourceMappingURL=createGroup.css.map */
