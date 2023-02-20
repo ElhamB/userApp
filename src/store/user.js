@@ -12,12 +12,17 @@ export const filterByValue = (value) => async (dispatch) => {
   };
   //reducers
   export const userReducer = (
-    state = { users:users,isAdded:false,selectedUsers:[] }, action) => {
+    state = { users:users }, action) => {
         switch (action.type) {
             case FILTER_BY_VALUE:
-                return { users: action.payload };
+              let value = action.payload.value;
+              let filtereddUsers = state.users.filter((user) => {
+                return user.name.toLowerCase().includes(value);
+              });
+                return { ...state,users: filtereddUsers};
                 case ADD_USERS:
-                  return{...state.users,selectedUsers:[action.selectedUsers]}
+                 //let selectedUsers;
+                  return{...state,users:[action.selectedUsers]}
               default:
                 return state;
         }

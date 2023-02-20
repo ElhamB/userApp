@@ -6,6 +6,7 @@ const UserItem = ({ user }) => {
   const dispatch = useDispatch();
   const isAdded = useSelector((state) => state.user.isAdded);
 const userInfo={
+     id:user.id,
     name:user.name,
     image:user.image,
     isSelected:true
