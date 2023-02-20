@@ -5,12 +5,13 @@ import './userFilter.css'
 const UserFilter = () => {
   const dispatch = useDispatch();
 
-  const handleFilterByValue = ({value}) => {
+  const handleFilterByValue = (e) => {
+    const value=e.target.value;
     dispatch(filterByValue({value}));
   };
   return (
     <div className='search-control'>
-      <input placeholder='Add members by name or email'  onChange={(e) => handleFilterByValue(e.target.value)}/>
+      <input placeholder='Add members by name or email'  onChange={(e) => handleFilterByValue(e)}/>
     </div>
   )
 }

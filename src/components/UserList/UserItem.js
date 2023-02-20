@@ -4,7 +4,8 @@ import addUser from "./add-user.svg";
 import { addUsers } from "../../store/user";
 const UserItem = ({ user }) => {
   const dispatch = useDispatch();
-  const isAdded = useSelector((state) => state.user.isAdded);
+  const selectedUsers = useSelector((state) => state.user.selectedUsers);
+  const {isSelected}=selectedUsers;
 const userInfo={
      id:user.id,
     name:user.name,
@@ -31,9 +32,9 @@ const userInfo={
         </figure>
       </div>
       <div>
-        <button className={`${isAdded ? 'btn-added': 'btn-add'}`} onClick={hanleSelectUser}>
-        {isAdded ? <i className="fa fa-check-circle"></i> : <img src={addUser} className="add-user-icon" alt="add-user-icon" />} 
-          {isAdded ? 'Added': 'Add'}
+        <button className={`${isSelected ? 'btn-added': 'btn-add'}`} onClick={hanleSelectUser}>
+        {isSelected ? <i className="fa fa-check-circle"></i> : <img src={addUser} className="add-user-icon" alt="add-user-icon" />} 
+          {isSelected ? 'Added': 'Add'}
         </button>
       </div>
     </div>
