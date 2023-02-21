@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 const useUnsavedChangesWarning = (message = "Are you sure want to discard changes?") => {
     const [isDirty, setDirty] = useState(false);
-
     useEffect(() => {
-        //Detecting browser closing
         window.onbeforeunload = isDirty && (() => message);
-
         return () => {
             window.onbeforeunload = null;
         };
