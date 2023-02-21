@@ -26,6 +26,14 @@
   height: 34px;
 }
 
+.form-control.invalid input {
+  border: 1px solid #b40e0e;
+}
+
+.text-danger {
+  color: #b40e0e;
+}
+
 .button-container {
   display: flex;
   justify-content: flex-end;
