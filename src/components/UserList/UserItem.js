@@ -13,8 +13,8 @@ const UserItem = ({ user }) => {
     image: user.image,
     isSelected: true,
   };
-  const hanleSelectUser = (e) => {
-    e.preventDefault();
+  const hanleSelectUser = () => {
+
     dispatch(addOrRemoveUser(userInfo));
   };
   return (
