@@ -2,13 +2,13 @@ import { users } from "../assets/users";
 
 //action types
 const FILTER_BY_VALUE = "FILTER_BY_VALUE";
-const ADD_USERS = "ADD_USERS";
+const ADD_OR_REMOVE_USER = "ADD_OR_REMOVE_USER";
 //action creators
 export const filterByValue = (value) => async (dispatch) => {
   dispatch({ type: FILTER_BY_VALUE, payload: value });
 };
-export const addUsers = (userInfo) => (dispatch) => {
-  dispatch({ type: ADD_USERS, selectedUser: userInfo });
+export const addOrRemoveUser = (userInfo) => (dispatch) => {
+  dispatch({ type: ADD_OR_REMOVE_USER, selectedUser: userInfo });
 };
 //reducers
 export const userReducer = (
@@ -28,7 +28,7 @@ export const userReducer = (
         );
       } else filteredUsers = users;
       return { ...state, users: filteredUsers };
-    case ADD_USERS:
+    case ADD_OR_REMOVE_USER:
       const newItem = action.selectedUser;
       const existingUser = state.selectedUsers.find(
         ({ id }) => id === newItem.id

@@ -1,0 +1,9 @@
+$color-blue:#1979ff;
+$color-green: #4cad5b;
+$radius:3px;
+@mixin rounded {
+    border-radius: $radius;
+  }
+  @mixin circle{
+    border-radius: 100%;
+  }
