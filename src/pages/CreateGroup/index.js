@@ -15,19 +15,9 @@ const CreateGroupPage = () => {
   const selectedUsers = useSelector((state) => state.user.selectedUsers);
   const disabledCreate = selectedUsers.length === 0;
   // console.log("disabledCreate" + disabledCreate);
-  //
 
+  //csv
   const { downloadCsvFile } = useCreateCsv();
-
-  // const data = useMemo(()=>{
-  // var cvRows = [];
-  //   if(selectedUsers.length > 0 && groupTitle){
-  //       for(var i=0;i<selectedUsers.length;i++){
-  //         cvRows.push(selectedUsers[i].name,groupTitle,'Elham bagheri',new Date().toLocaleString())
-  //       }
-  //         console.log(cvRows)
-  //     }
-  // },[groupTitle,selectedUsers])
   var result = [];
 
   function getData() {
