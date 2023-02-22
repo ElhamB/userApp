@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
-import CreateGroupPage from './pages/CreateGroupPage';
+import CreateGroupPage from './pages/CreateGroup';
+
 
 function App() {
   return (
