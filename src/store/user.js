@@ -34,7 +34,6 @@ export const userReducer = (
         ({ id }) => id === newItem.id
       );
       if (existingUser) {
-        console.log("existingUser ");
         return {
           ...state,
           selectedUsers: state.selectedUsers.filter(

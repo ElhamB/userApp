@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import SelectedMember from "../components/SelectedMembers/SelectedMembers";
 import UserFilter from "../components/UserFilter/UserFilter";
@@ -11,26 +11,49 @@ const CreateGroupPage = () => {
   const [Prompt, setDirty, setPristine] = useUnsavedChangesWarning();
   const [groupTitle, setGroupTitle] = useState("");
 
-    //disable create button if selected user is empty
-    const selectedUsers = useSelector((state) => state.user.selectedUsers);
-    const disabledCreate = selectedUsers.length === 0;
-   // console.log("disabledCreate" + disabledCreate);
-    //
+  //disable create button if selected user is empty
+  const selectedUsers = useSelector((state) => state.user.selectedUsers);
+  const disabledCreate = selectedUsers.length === 0;
+  // console.log("disabledCreate" + disabledCreate);
+  //
 
   const { downloadCsvFile } = useCreateCsv();
- 
-  const data = useMemo(()=>{
-    var cvRows = [];
-    if(selectedUsers && groupTitle){
-      var arraySelectedUsers =selectedUsers.map(obj => Object.values(obj));
-        for(var i=0;i<arraySelectedUsers.length;i++){
-          arraySelectedUsers.push(groupTitle,'Elham bagheri',new Date().toLocaleString())
-        }
-        cvRows.push(arraySelectedUsers)
-      }
-  },[groupTitle,selectedUsers])
 
- 
+  // const data = useMemo(()=>{
+  // var cvRows = [];
+  //   if(selectedUsers.length > 0 && groupTitle){
+  //       for(var i=0;i<selectedUsers.length;i++){
+  //         cvRows.push(selectedUsers[i].name,groupTitle,'Elham bagheri',new Date().toLocaleString())
+  //       }
+  //         console.log(cvRows)
+  //     }
+  // },[groupTitle,selectedUsers])
+  var result = [];
+
+  function getData() {
+    var cvRows = [];
+    if (selectedUsers.length > 0 && groupTitle) {
+      for (var i = 0; i < selectedUsers.length; i++) {
+        cvRows.push(
+          selectedUsers[i].name,
+          groupTitle,
+          "Elham bagheri",
+          new Date().toLocaleString()
+        );
+      }
+      const chunkSize = 4;
+
+      for (let i = 0; i < cvRows.length; i += chunkSize) {
+        const chunk = cvRows.slice(i, i + chunkSize);
+        result.push(chunk);
+      }
+    }
+  }
+  getData();
+  console.log(result);
+  //   useEffect(()=>{
+
+  // },[selectedUsers,groupTitle])
 
   //validation
   const [groupTitleIsTouched, setGroupTitleIsTouched] = useState(false);
@@ -84,7 +107,7 @@ const CreateGroupPage = () => {
             disabled={disabledCreate}
             onClick={() => {
               setPristine();
-              downloadCsvFile(data);
+              downloadCsvFile(result);
             }}
           >
             Create

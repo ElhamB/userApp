@@ -3,6 +3,7 @@ const useCreateCsv = () => {
 
 //  var csvFileData = [
 //     ['designer', 'Singer','Elham bagheri','2023/2/22'],
+//['designer', 'Singer','Elham bagheri','2023/2/22']
 //  ];
    
  //create a user-defined function to download CSV file 
@@ -10,7 +11,7 @@ const useCreateCsv = () => {
      //create CSV file data in an array
     const csvFileData = data;
      //define the heading for each row of the data
-     var csv = 'Group name,List of members,Creator,Creation time\n';
+     var csv = 'Group name,members name,Creator,Creation time\n';
      
      //merge the data with CSV
      csvFileData.forEach(function(row) {
