@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import SelectedMember from "../components/SelectedMembers/SelectedMembers";
 import UserFilter from "../components/UserFilter/UserFilter";
