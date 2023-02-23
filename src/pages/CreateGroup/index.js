@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import GroupTitleInput from "../../components/GroupTitleInput";
 import SelectedMember from "../../components/SelectedMembers";
@@ -12,7 +12,7 @@ import "./createGroup.css";
 const CreateGroupPage = () => {
   const selectedUsers = useSelector((state) => state.user.selectedUsers);
   const [Prompt, setDirty, setPristine] = useUnsavedChangesWarning();
-  
+
   const [groupTitle, setGroupTitle] = useState("");
   const [groupTitleIsTouched, setGroupTitleIsTouched] = useState(false);
   const groupTitleIsValid = groupTitle.trim() !== "";
@@ -26,9 +26,14 @@ const CreateGroupPage = () => {
   const handleDiscard = () => {
     Prompt();
   };
+  useEffect(() => {
+    if (selectedUsers.length > 0) {
+      setDirty();
+    }
+  }, [selectedUsers, setDirty]);
   //csv
   const { downloadCsvFile } = useCreateCsv();
-  var result = [];
+  var data = [];
 
   const getData = () => {
     var cvRows = [];
@@ -37,14 +42,14 @@ const CreateGroupPage = () => {
         cvRows.push(
           selectedUsers[i].name,
           groupTitle,
-          "Elham bagheri",
+          "Elham Bagheri",
           new Date().toLocaleString()
         );
       }
       const chunkSize = 4;
       for (let i = 0; i < cvRows.length; i += chunkSize) {
         const chunk = cvRows.slice(i, i + chunkSize);
-        result.push(chunk);
+        data.push(chunk);
       }
     }
   };
@@ -56,7 +61,7 @@ const CreateGroupPage = () => {
     }
     getData();
     setPristine();
-    downloadCsvFile(result);
+    downloadCsvFile(data);
     setGroupTitle("");
     setGroupTitleIsTouched(false);
   };
