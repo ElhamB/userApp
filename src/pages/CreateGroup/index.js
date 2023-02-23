@@ -20,7 +20,7 @@ const CreateGroupPage = () => {
   const { downloadCsvFile } = useCreateCsv();
   var result = [];
 
-  function getData() {
+  const getData=() =>{
     var cvRows = [];
     if (selectedUsers.length > 0 && groupTitle) {
       for (var i = 0; i < selectedUsers.length; i++) {
@@ -39,11 +39,6 @@ const CreateGroupPage = () => {
       }
     }
   }
-  getData();
-  console.log(result);
-  //   useEffect(()=>{
-
-  // },[selectedUsers,groupTitle])
 
   //validation
   const [groupTitleIsTouched, setGroupTitleIsTouched] = useState(false);
@@ -66,6 +61,10 @@ const CreateGroupPage = () => {
     if (!groupTitleIsValid) {
       return;
     }
+    getData();
+    console.log(result);
+    setPristine();
+    downloadCsvFile(result);
     setGroupTitle("");
     setGroupTitleIsTouched(false);
   };
@@ -89,16 +88,13 @@ const CreateGroupPage = () => {
         <UserFilter />
         <UserList />
         <div className="button-container">
-          <button className="btn-outline-primary" onClick={() => Prompt()}>
+          <button type="button" className="btn-outline-primary" onClick={() => Prompt()}>
             Discard
           </button>
           <button
             className="btn-primary"
             disabled={disabledCreate}
-            onClick={() => {
-              setPristine();
-              downloadCsvFile(result);
-            }}
+           type="submit"
           >
             Create
           </button>

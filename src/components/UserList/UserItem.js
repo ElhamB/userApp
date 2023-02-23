@@ -34,7 +34,7 @@ const UserItem = ({ user }) => {
         </figure>
       </div>
       <div>
-        <button
+        <button type="button"
           className={`${isSelected ? "btn-added" : "btn-add"}`}
           onClick={hanleSelectUser}
         >

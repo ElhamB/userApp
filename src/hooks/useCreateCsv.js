@@ -11,7 +11,7 @@ const useCreateCsv = () => {
      //create CSV file data in an array
     const csvFileData = data;
      //define the heading for each row of the data
-     var csv = 'Group name,members name,Creator,Creation time\n';
+     var csv = '<embers name,Group name,Creator,Creation date,Creation time\n';
      
      //merge the data with CSV
      csvFileData.forEach(function(row) {
