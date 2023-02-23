@@ -1,26 +1,36 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import GroupTitleInput from "../../components/GroupTitleInput";
 import SelectedMember from "../../components/SelectedMembers";
 import UserFilter from "../../components/UserFilter";
+import ButtonFooter from "../../components/ButtonFooter/ButtonFooter";
 import UserList from "../../components/UserList";
 import useUnsavedChangesWarning from "../../hooks/useUnsavedChangesWarning";
 import useCreateCsv from "../../hooks/useCreateCsv";
 import "./createGroup.css";
 
 const CreateGroupPage = () => {
-  const [Prompt, setDirty, setPristine] = useUnsavedChangesWarning();
-  const [groupTitle, setGroupTitle] = useState("");
-
-  //disable create button if selected user is empty
   const selectedUsers = useSelector((state) => state.user.selectedUsers);
-  const disabledCreate = selectedUsers.length === 0;
-  // console.log("disabledCreate" + disabledCreate);
-
+  const [Prompt, setDirty, setPristine] = useUnsavedChangesWarning();
+  
+  const [groupTitle, setGroupTitle] = useState("");
+  const [groupTitleIsTouched, setGroupTitleIsTouched] = useState(false);
+  const groupTitleIsValid = groupTitle.trim() !== "";
+  const handleGroupTitleBlur = () => {
+    setGroupTitleIsTouched(true);
+  };
+  const handleGroupTitleChange = (e) => {
+    setGroupTitle(e.target.value);
+    setDirty();
+  };
+  const handleDiscard = () => {
+    Prompt();
+  };
   //csv
   const { downloadCsvFile } = useCreateCsv();
   var result = [];
 
-  const getData=() =>{
+  const getData = () => {
     var cvRows = [];
     if (selectedUsers.length > 0 && groupTitle) {
       for (var i = 0; i < selectedUsers.length; i++) {
@@ -32,28 +42,11 @@ const CreateGroupPage = () => {
         );
       }
       const chunkSize = 4;
-
       for (let i = 0; i < cvRows.length; i += chunkSize) {
         const chunk = cvRows.slice(i, i + chunkSize);
         result.push(chunk);
       }
     }
-  }
-
-  //validation
-  const [groupTitleIsTouched, setGroupTitleIsTouched] = useState(false);
-  const groupTitleIsValid = groupTitle.trim() !== "";
-  const groupTitleIsInValid = !groupTitleIsValid && groupTitleIsTouched;
-  const groupTitleInputClass = groupTitleIsInValid
-    ? "form-control invalid"
-    : "form-control";
-
-  const handleGroupTitleBlur = () => {
-    setGroupTitleIsTouched(true);
-  };
-  const handleGroupTitleChange = (e) => {
-    setGroupTitle(e.target.value);
-    setDirty();
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,7 +55,6 @@ const CreateGroupPage = () => {
       return;
     }
     getData();
-    console.log(result);
     setPristine();
     downloadCsvFile(result);
     setGroupTitle("");
@@ -72,33 +64,19 @@ const CreateGroupPage = () => {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <div className={groupTitleInputClass}>
-          <label htmlFor="group-title">Group Title</label>
-          <input
-            id="group-title"
-            value={groupTitle}
-            onBlur={handleGroupTitleBlur}
-            onChange={handleGroupTitleChange}
-          />
-          {groupTitleIsInValid && (
-            <p className="text-danger">Enter a group title</p>
-          )}
-        </div>
+        <GroupTitleInput
+          groupTitle={groupTitle}
+          groupTitleIsTouched={groupTitleIsTouched}
+          onChangeTitleInput={handleGroupTitleChange}
+          onBlurTitleInput={handleGroupTitleBlur}
+        />
         <SelectedMember />
         <UserFilter />
         <UserList />
-        <div className="button-container">
-          <button type="button" className="btn-outline-primary" onClick={() => Prompt()}>
-            Discard
-          </button>
-          <button
-            className="btn-primary"
-            disabled={disabledCreate}
-           type="submit"
-          >
-            Create
-          </button>
-        </div>
+        <ButtonFooter
+          onDiscard={handleDiscard}
+          groupTitleIsValid={groupTitleIsValid}
+        />
       </form>
     </div>
   );

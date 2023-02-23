@@ -64,7 +64,7 @@
   color: #1979ff;
   border: 2px solid #1979ff;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
