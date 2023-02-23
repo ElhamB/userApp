@@ -11,11 +11,14 @@ import "./createGroup.css";
 
 const CreateGroupPage = () => {
   const selectedUsers = useSelector((state) => state.user.selectedUsers);
-  const [Prompt, setDirty, setPristine] = useUnsavedChangesWarning();
 
   const [groupTitle, setGroupTitle] = useState("");
   const [groupTitleIsTouched, setGroupTitleIsTouched] = useState(false);
   const groupTitleIsValid = groupTitle.trim() !== "";
+ 
+  const setEmptyInput=()=> setGroupTitle("");
+  const [Prompt, setDirty, setPristine] = useUnsavedChangesWarning(setEmptyInput);
+
   const handleGroupTitleBlur = () => {
     setGroupTitleIsTouched(true);
   };
@@ -31,6 +34,7 @@ const CreateGroupPage = () => {
       setDirty();
     }
   }, [selectedUsers, setDirty]);
+
   //csv
   const { downloadCsvFile } = useCreateCsv();
   var data = [];
@@ -53,6 +57,7 @@ const CreateGroupPage = () => {
       }
     }
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setGroupTitleIsTouched(true);

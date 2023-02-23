@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-const useUnsavedChangesWarning = (message = "Are you sure want to discard changes?") => {
+import { useDispatch } from "react-redux";
+import { clearSelectedUsers } from "../store/user";
+const useUnsavedChangesWarning = (setEmptyInputFn,message = "Are you sure want to discard changes?") => {
+    const dispatch = useDispatch();
     const [isDirty, setDirty] = useState(false);
     useEffect(() => {
         window.onbeforeunload = isDirty && (() => message);
@@ -10,7 +13,14 @@ const useUnsavedChangesWarning = (message = "Are you sure want to discard change
 
    const routerPrompt=()=>{
     if(isDirty){
-        window.confirm(message)
+         //window.confirm(message)
+        if (window.confirm(message) === true) {
+           setDirty(false);
+           dispatch(clearSelectedUsers());
+           setEmptyInputFn();
+          } else {
+            setDirty(true)
+          }
     }
    }
 

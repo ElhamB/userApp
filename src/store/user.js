@@ -3,12 +3,16 @@ import { users } from "../assets/users";
 //action types
 const FILTER_BY_VALUE = "FILTER_BY_VALUE";
 const ADD_OR_REMOVE_USER = "ADD_OR_REMOVE_USER";
+const CLEAR_SELECTED_USERS="CLEAR_SELECTED_USERS";
 //action creators
 export const filterByValue = (value) => async (dispatch) => {
   dispatch({ type: FILTER_BY_VALUE, payload: value });
 };
 export const addOrRemoveUser = (userInfo) => (dispatch) => {
   dispatch({ type: ADD_OR_REMOVE_USER, selectedUser: userInfo });
+};
+export const clearSelectedUsers = () => (dispatch) => {
+  dispatch({ type: CLEAR_SELECTED_USERS});
 };
 //reducers
 export const userReducer = (
@@ -46,6 +50,8 @@ export const userReducer = (
           selectedUsers: [...state.selectedUsers, newItem],
         };
       }
+      case CLEAR_SELECTED_USERS:
+        return {...state,selectedUsers:[]}
     default:
       return state;
   }
